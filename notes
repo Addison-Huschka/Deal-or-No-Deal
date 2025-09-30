@@ -4,3 +4,29 @@ briefcase values: $0.01 $1 $5 $10 $25 $50 $75 $100
                   $10,000 $25,000 $50,000 $75,000 $100,000
                   $200,000 $300,000 $400,000 $500,000
                   $750,000 $1,000,000
+formula for banker: ???
+
+
+gameplay order:
+        start of game - all case values are on the board and contestent chooses what case they want
+        round 1 - They pick six cases to open and reveal the values of. These values are removed from the board. 
+                After all cases in the round are revealed, the banker makes an offer to buy the contestants case and
+                they decide deal or no deal.
+        round 2 - They pick five cases to open and reveal the values of. These values are removed from the board. 
+                After all cases in the round are revealed, the banker makes an offer to buy the contestants case and
+                they decide deal or no deal.
+        round 3 - They pick four cases to open and reveal the values of. These values are removed from the board. 
+                After all cases in the round are revealed, the banker makes an offer to buy the contestants case and
+                they decide deal or no deal.
+        round 4 - They pick three cases to open and reveal the values of. These values are removed from the board. 
+                After all cases in the round are revealed, the banker makes an offer to buy the contestants case and
+                they decide deal or no deal.
+        round 5 - They pick two cases to open and reveal the values of. These values are removed from the board. 
+                After all cases in the round are revealed, the banker makes an offer to buy the contestants case and
+                they decide deal or no deal.
+        round 6 and after - They pick one case to open and reveal the value of. this value is removed from the board. 
+                After the case in the round is revealed, the banker makes an offer to buy the contestants case and
+                they decide deal or no deal.
+        deal: if the contestant says deal at any point, they take the money the banker offered and the game finishes
+        no deal: The game continues until there are 2 cases left
+        end of game: If the contestant gets down to two cases, they get to decide if they take the origional case they took or the other.
