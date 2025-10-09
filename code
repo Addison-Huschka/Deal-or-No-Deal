@@ -10,10 +10,11 @@ value_options = [0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000,
 
 user_case = int(input("Pick a case number 1-26: "))
 user_case_value = casevalues.pop(user_case)
+casevalues[0] = user_case_value
 #print(casevalues)
 
-value_list = list(casevalues.values())
-total_values = value_list + [user_case_value]
-print(sorted(casevalues.keys()))
-print(sorted(total_values))
+for number in range(1,27):
+    if number in casevalues:
+        print(number, end= " ")
+print(sorted(casevalues.values()))
     
