@@ -12,6 +12,8 @@ user_case = int(input("Pick a case number 1-26: "))
 user_case_value = casevalues.pop(user_case)
 #print(casevalues)
 
+value_list = list(casevalues.values())
+total_values = value_list + [user_case_value]
 print(sorted(casevalues.keys()))
-print(value_options)
+print(sorted(total_values))
     
