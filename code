@@ -7,7 +7,8 @@ for number in range(1,27):
     value_options.remove(value)
 print(casevalues)
 
-user_case = input("Pick a case number 1-26: ")
+user_case = int(input("Pick a case number 1-26: "))
 user_case_value = casevalues.pop(user_case)
 print(user_case_value)
+print(casevalues)
     
