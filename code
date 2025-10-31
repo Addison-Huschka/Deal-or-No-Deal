@@ -17,3 +17,9 @@ for number in range(1,27):
         print(number, end= " ")
 print(sorted(casevalues.values()))
     
+class briefcases:
+    def __init__(self):
+        self.number = 0
+        self.value = 0
+        self.pairs = {}
+    
