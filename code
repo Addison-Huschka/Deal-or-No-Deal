@@ -21,5 +21,10 @@ class briefcases:
     def __init__(self):
         self.number = 0
         self.value = 0
-        self.pairs = {}
+        self.pair = {}
+    def get_number(self):
+        return self.number
+    def set_number(self, case_number):
+        self.number = case_number
+
     
