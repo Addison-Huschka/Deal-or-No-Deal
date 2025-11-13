@@ -17,24 +17,27 @@ class Briefcases:
             print(f'Case {number} contained ${self.cases[number]:,}')
     def remaining_amounts(self):
         return [amt for num, amt in self.cases.items() if num not in self.opened_cases]
-    def banker_offer(self):
-        remaining = []
-        for number in range(1,27):
-            if self.cases[number] not in self.opened_cases:
-                remaining.append(self.cases[number])
-        offer = sum(remaining)/len(remaining)
-        return offer
-    #print statement with the banker's offer
-    #return offer
+
+game_1 = Briefcases() 
+
+def banker_offer(game):
+    remaining = []
+    for number in range(1,27):
+        if game.cases[number] not in game.opened_cases:
+            remaining.append(game.cases[number])
+    offer = sum(remaining)/len(remaining)
+    return offer
 #this is before the next function because I thought it made more sense here lol
 #I think we can just use the average for the bankers formula
 #but if someone finds a different way that works too
 
 def deal_or_no_deal():
     choice = input("Do you accept the banker\'s offer? (deal or no deal): ").lower()
-    return choice == "deal" #returns true or false to be used later in ?
+    return choice
 
-#def show_remaining_case_values():
+def show_remaining_case_values(game):
+    return
+
 #^this replaces:
 '''for number in range(1,27):
     if number in casevalues:
