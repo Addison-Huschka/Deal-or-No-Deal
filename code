@@ -21,11 +21,7 @@ class Briefcases:
 game_1 = Briefcases() 
 
 def banker_offer(game): #banker_offer(game_1) to run
-    remaining = []
-    for number in range(1,27):
-        if number not in game.opened_cases:
-            remaining.append(game.cases[number])
-    offer = sum(remaining)/len(remaining)
+    offer = sum(game.remaining_amounts())/len(game.remaining_amounts())
     return offer
 #this is before the next function because I thought it made more sense here lol
 #I think we can just use the average for the bankers formula
