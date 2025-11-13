@@ -1,19 +1,9 @@
 import random
-'''
-user_case = int(input("Pick a case number 1-26: "))
-user_case_value = casevalues.pop(user_case)
-casevalues[0] = user_case_value
-#print(casevalues)
-
-for number in range(1,27):
-    if number in casevalues:
-        print(number, end= " ")
-#print(sorted(casevalues.values()))'''
     
 class Briefcases:
     def __init__(self):
-        self.cases = {}
-        self.opened_cases = set()
+        self.cases = {} #collection data type 1, dictionary (used to store the number value pairs of the cases)
+        self.opened_cases = set() #collection data type 2, set (used to keep track of which cases are open)
     def generate_cases(self):
         amounts = [0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000, 25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000]
         random.shuffle(amounts)
@@ -27,4 +17,37 @@ class Briefcases:
             print(f'Case {number} contained ${self.cases[number]:,}')
     def remaining_amounts(self):
         return [amt for num, amt in self.cases.items() if num not in self.opened_cases]
-    
+
+#def banker_offer(name of thing?):
+    #remaining = remaining values (idk how to do that yet)
+    #offer = formula with the remaining values
+    #print statement with the banker's offer
+    #return offer
+#this is before the next function because I thought it made more sense here lol
+#I think we can just use the average for the bankers formula
+#but if someone finds a different way that works too
+
+def deal_or_no_deal():
+    choice = input("Do you accept the banker\'s offer? (deal or no deal): ").lower()
+    return choice == "deal" #returns true or false to be used later in ?
+
+#def show_remaining_case_values():
+#^this replaces:
+'''for number in range(1,27):
+    if number in casevalues:
+        print(number, end= " ")
+print(sorted(casevalues.values()))'''
+
+#def play_round():
+#this is how we open cases i think
+
+#def play_the_game():
+#pick player case at some point which replaces:
+'''user_case = int(input("Pick a case number 1-26: "))
+user_case_value = casevalues.pop(user_case)
+casevalues[0] = user_case_value'''
+
+#def create/update_leaderboard(): 
+# idk which is a better name lol
+#This is how we implement a file
+#it will be called every time we play so maybe update instead of create
