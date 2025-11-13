@@ -17,9 +17,11 @@ class Briefcases:
             print(f'Case {number} contained ${self.cases[number]:,}')
     def remaining_amounts(self):
         return [amt for num, amt in self.cases.items() if num not in self.opened_cases]
-
-#def banker_offer(name of thing?):
-    #remaining = remaining values (idk how to do that yet)
+    def banker_offer(self):
+        remaining = []
+        for number in range(1,27):
+            if self.cases[number] not in self.opened_cases:
+                remaining.append(self.cases[number])
     #offer = formula with the remaining values (if we use average it could be sum(remaining)/len(remaining))
     #print statement with the banker's offer
     #return offer
