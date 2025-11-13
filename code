@@ -1,12 +1,5 @@
 import random
-casevalues = {}
-value_options = [0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000, 25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000]
-for number in range(1,27):
-    value = random.choice(value_options)
-    casevalues[number] = value
-    value_options.remove(value)
-#print(casevalues)
-
+'''
 user_case = int(input("Pick a case number 1-26: "))
 user_case_value = casevalues.pop(user_case)
 casevalues[0] = user_case_value
@@ -15,12 +8,23 @@ casevalues[0] = user_case_value
 for number in range(1,27):
     if number in casevalues:
         print(number, end= " ")
-print(sorted(casevalues.values()))
+#print(sorted(casevalues.values()))'''
     
-class Briefcase:
-    def __init__(self,number,value):
-        self.number = number
-        self.value = value
-        self.opened = False
-
+class Briefcases:
+    def __init__(self):
+        self.cases = {}
+        self.opened_cases = set()
+    def generate_cases(self):
+        amounts = [0.01, 1, 5, 10, 25, 50, 75, 100, 200, 300, 400, 500, 750, 1000, 5000, 10000, 25000, 50000, 75000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000]
+        random.shuffle(amounts)
+        for number in range(1,27):
+            self.cases[number] = amounts[number-1]
+    def open_case(self,number):
+        if number in self.opened_cases:
+            print(f'Case{number} has already been opened.')
+        else:
+            self.opened_cases.add(number)
+            print(f'Case {number} contained ${self.cases[number]:,}')
+    def remaining_amounts(self):
+        return [amt for num, amt in self.cases.items() if num not in self.opened_cases]
     
