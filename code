@@ -28,17 +28,13 @@ def banker_offer(game): #banker_offer(game_1) to run
 #but if someone finds a different way that works too
 
 def deal_or_no_deal():
-    choice = input("Do you accept the banker\'s offer? (deal or no deal): ").lower()
+    choice = input("Do you accept the banker's offer? (deal or no deal): ").lower()
     return choice
 
 def show_remaining_case_values(game):
-    return
-
-#^this replaces:
-'''for number in range(1,27):
-    if number in casevalues:
-        print(number, end= " ")
-print(sorted(casevalues.values()))'''
+    remaining = game.remaining_amounts().sort()
+    for item in remaining:
+        return item
 
 #def play_round():
 #this is how we open cases i think
