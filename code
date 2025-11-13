@@ -20,7 +20,7 @@ class Briefcases:
 
 #def banker_offer(name of thing?):
     #remaining = remaining values (idk how to do that yet)
-    #offer = formula with the remaining values
+    #offer = formula with the remaining values (if we use average it could be sum(remaining)/len(remaining))
     #print statement with the banker's offer
     #return offer
 #this is before the next function because I thought it made more sense here lol
