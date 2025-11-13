@@ -16,16 +16,16 @@ class Briefcases:
             self.opened_cases.add(number)
             print(f'Case {number} contained ${self.cases[number]:,}')
     def remaining_amounts(self):
-        return [amt for num, amt in self.cases.items() if num not in self.opened_cases]
+        remaining_values = []
+        for number in range(1,27):
+            if number not in self.opened_cases:
+                remaining_values.append(self.cases[number])
+        return random.shuffle(remaining_values) #so that you can't figure out what cases correspond to which values. It might actually be better to sort them in increasing order
 
 game_1 = Briefcases() 
 
-def banker_offer(game):
-    remaining = []
-    for number in range(1,27):
-        if number not in game.opened_cases:
-            remaining.append(game.cases[number])
-    offer = sum(remaining)/len(remaining)
+def banker_offer(game): #banker_offer(game_1) to run
+    offer = sum(game.remaining_amounts())/len(game.remaining_amounts())
     return offer
 #this is before the next function because I thought it made more sense here lol
 #I think we can just use the average for the bankers formula
