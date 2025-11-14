@@ -16,7 +16,7 @@ class Briefcases:
             self.opened_cases.add(number)
             print(f'Case {number} contained ${self.cases[number]:,}')
     def remaining_amounts(self):
-        return [amt for num, amt in self.cases.items() if num not in self.opened_cases] #this is our 3rd collection data type, list (used to store the remaining amounts in the unopened cases)
+        return [amt for num, amt in self.cases.items() if num not in self.opened_cases] #this is our 3rd collection data type, list (used to store the remaining amounts in the unopened cases) There are also multiple instances of using lists
 
 game_1 = Briefcases() 
 
