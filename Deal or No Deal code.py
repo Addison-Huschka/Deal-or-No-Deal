@@ -1,3 +1,8 @@
+#Created by Addison Huschka, Rebekah Peratt, and George Dinga
+
+
+
+
 import random
     
 class Briefcases:
