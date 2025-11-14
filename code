@@ -16,7 +16,7 @@ class Briefcases:
             self.opened_cases.add(number)
             print(f'Case {number} contained ${self.cases[number]:,}')
     def remaining_amounts(self):
-        return [amt for num, amt in self.cases.items() if num not in self.opened_cases]
+        return [amt for num, amt in self.cases.items() if num not in self.opened_cases] #this is our 3rd collection data type, list (used to store the remaining amounts in the unopened cases)
 
 game_1 = Briefcases() 
 
@@ -36,8 +36,12 @@ def show_remaining_case_values(game):
     for item in remaining:
         return item
 
-#def play_round():
-#this is how we open cases i think
+def play_round(game, round_number, cases_to_open, player_case):
+    print(f'\nRound {round_number}: Open {cases_to_open} case(s).')
+    opened_this_round = []
+    
+    #for _ in range(cases_to_open):
+#this is how we open cases
 
 #def play_the_game():
 #pick player case at some point which replaces:
