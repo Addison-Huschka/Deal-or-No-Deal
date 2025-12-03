@@ -71,9 +71,16 @@ def play_round(game, round_number, cases_to_open, player_case): #when called in 
 
 
 
-def create_leaderboard():
-    board_file = open('number.txt', 'w')
-    board_file.write(f"")
+def create_leaderboard(game):
+    board_file = open("board.txt", "w")
+    board_file.write("REMAINING MONEY VALUES:\n")
+    for item in game.cases:
+        if item not in game.opened_cases:
+            board_file.write(f"{game.cases[item]}\n")
+    values = open('board.txt', 'r')
+    board = values.readlines()
+    for item in board:
+        print(item)
 
 
 
@@ -99,6 +106,7 @@ def play_the_game():
             round_structure = [6,5,4,3,2] #number of cases to open each round
             round_number += 1
             play_round(game, round_number, round_structure[round_number-1], player_case)
+            create_leaderboard(game)
             print(f"\nThe Banker offers ${banker_offer(game)}.")
             choice = deal_or_no_deal()
             if choice == "deal":
@@ -110,6 +118,7 @@ def play_the_game():
         else:  #the if/else is here because after the 5th round the player only picks one case, but there are up to 9 rounds total
             round_number += 1
             play_round(game, round_number, 1, player_case)
+            create_leaderboard(game)
             print(f"\nThe Banker offers ${banker_offer(game)}.")
             choice = deal_or_no_deal()
             if choice == "deal":
