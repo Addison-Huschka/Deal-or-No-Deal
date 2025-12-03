@@ -81,9 +81,11 @@ def play_the_game():
         if round_number < 5:    
             round_structure = [6,5,4,3,2] #number of cases to open each round
             round_number += 1
+            show_remaining_case_values(game, player_case)
             play_round(game, round_number, round_structure[round_number-1], player_case)
         else:
             round_number += 1
+            show_remaining_case_values(game, player_case)
             play_round(game, round_number, 1, player_case)
 
 #def create/update_leaderboard(): 
