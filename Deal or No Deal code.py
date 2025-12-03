@@ -71,8 +71,18 @@ def play_round(game, round_number, cases_to_open, player_case): #when called in 
 
 
 
-'''def create_leaderboard(game):
-    board_file = open("board.txt", "w")
+def create_leaderboard(player_name,winnings,filename="leaderboard.txt"):
+    entries = []
+    try:
+        with open(filename, "r") as file:
+            for line in file:
+                name, score = line.strip().split(": $")
+                entries.append((name, float(score.replace(",",""))))
+    except FileNotFoundError:
+        pass
+        
+    entries.append((player_name, winnings))
+    '''board_file = open("board.txt", "w")
     board_file.write("REMAINING MONEY VALUES:\n")
     for item in game.cases:
         if item not in game.opened_cases:
@@ -104,7 +114,7 @@ def play_the_game():
             print("Invalid input. Please enter a number between 1 and 26.")
     #I did the code above to make sure the player picks a valid case number and so that it is still included in the other calculations and remaining case values. I tested it so trust me that it works (:
 
-    round_number = 0
+    round_number = 1
     end_indicator = False
     
     while round_number < 9:
@@ -112,7 +122,6 @@ def play_the_game():
             round_structure = [6,5,4,3,2] #number of cases to open each round
             round_number += 1
             play_round(game, round_number, round_structure[round_number-1], player_case)
-            create_leaderboard(game)
             print(f"\nThe Banker offers ${banker_offer(game)}.")
             choice = deal_or_no_deal()
             if choice == "deal":
@@ -124,7 +133,6 @@ def play_the_game():
         else:  #the if/else is here because after the 5th round the player only picks one case, but there are up to 9 rounds total
             round_number += 1
             play_round(game, round_number, 1, player_case)
-            create_leaderboard(game)
             print(f"\nThe Banker offers ${banker_offer(game)}.")
             choice = deal_or_no_deal()
             if choice == "deal":
@@ -140,5 +148,7 @@ def play_the_game():
 
         players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {last_case}? "))
         print(f"Congratulations! You won ${game.cases[last_case]}")
+
+    create_leaderboard(player_name, winnings=game.cases[last_case])
 
 play_the_game()
