@@ -33,7 +33,6 @@ def deal_or_no_deal():
 
 def show_remaining_case_values(game, player_case):
     remaining = game.remaining_amounts()
-    remaining.append(game.cases[player_case])
     remaining_sorted = sorted(remaining)
     
     print('\nThe remaining case values are:')
