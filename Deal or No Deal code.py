@@ -33,7 +33,7 @@ def banker_offer(game): #this is where we calculate the banker's offer
 
 def deal_or_no_deal():
     choice = input("Do you accept the banker's offer? Deal or no deal?: ").lower()
-    return choice
+    return choice == "deal"
 
 
 
