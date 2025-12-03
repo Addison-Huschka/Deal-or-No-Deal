@@ -71,7 +71,7 @@ def play_round(game, round_number, cases_to_open, player_case): #when called in 
 
 
 
-def create_leaderboard(player_name,winnings,filename="leaderboard.txt"):
+def create_leaderboard(player_name,winnings,filename="leaderboard.txt"): #creates/updates a leaderboard file that stores the top scores
     entries = []
     try:
         with open(filename, "r") as file:
