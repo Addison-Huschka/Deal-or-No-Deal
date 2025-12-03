@@ -70,11 +70,12 @@ def play_round(game, round_number, cases_to_open, player_case): #when called in 
                 print("Invalid input. Please enter a number between 1 and 26.")
 
 
-
-def create_leaderboard(player_name,winnings,filename="leaderboard.txt"): #creates/updates a leaderboard file that stores the top scores
-    entries = []
+def get_winnings(entries): #helper function for sorting leaderboard entries
+    return entries[1]
+def create_leaderboard(player_name,winnings,filename="leaderboard.txt"): #creates/updates a leaderboard file that stores the top 5 scores
+    entries = [] #list of tuples (name, score)
     try:
-        with open(filename, "r") as file:
+        with open(filename, "r") as file: #read existing leaderboard entries
             for line in file:
                 name, score = line.strip().split(": $")
                 entries.append((name, float(score.replace(",",""))))
@@ -82,18 +83,12 @@ def create_leaderboard(player_name,winnings,filename="leaderboard.txt"): #create
         pass
         
     entries.append((player_name, winnings))
-    '''board_file = open("board.txt", "w")
-    board_file.write("REMAINING MONEY VALUES:\n")
-    for item in game.cases:
-        if item not in game.opened_cases:
-            board_file.write(f"{game.cases[item]}\n")
-    values = open('board.txt', 'r')
-    board = values.readlines()
-    for item in board:
-        print(item)'''
+    entries.sort(key=get_winnings, reverse=True)
+    entries = entries[:5]  # Keep only top 5 scores
 
-
-
+    with open(filename, "w") as file: #write updated leaderboard entries
+        for name, score in entries:
+            file.write(f"{name}: ${score:,}\n")
 
 
 def play_the_game():
