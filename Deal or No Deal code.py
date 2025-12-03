@@ -2,7 +2,7 @@
 
 
 import random
-    
+
 class Briefcases:
     def __init__(self):
         self.cases = {} #collection data type 1, dictionary (used to store the number value pairs of the cases)
@@ -21,15 +21,21 @@ class Briefcases:
     def remaining_amounts(self): #this returns the amounts in the unopened cases
         return [amt for num, amt in self.cases.items() if num not in self.opened_cases] #collection data type 3, list (used to store the remaining amounts in the unopened cases) There are also multiple instances of using lists
 
+
+
 def banker_offer(game): #this is where we calculate the banker's offer
     offer = sum(game.remaining_amounts())/len(game.remaining_amounts())
     return offer
 #I think we can just use the average for the bankers formula
 #but if someone finds a different way that works too
 
+
+
 def deal_or_no_deal():
-    choice = input("Do you accept the banker's offer? (deal or no deal): ").lower()
+    choice = input("Do you accept the banker's offer? Deal or no deal?: ").lower()
     return choice
+
+
 
 def show_remaining_case_values(game, player_case):
     remaining = game.remaining_amounts()
@@ -39,6 +45,9 @@ def show_remaining_case_values(game, player_case):
     print('\nThe remaining case values are:')
     for value in remaining_sorted:
         print(f'${value:,}')
+
+
+
 
 def play_round(game, round_number, cases_to_open, player_case): #when called in the game, it will ask to open cases
     print(f'\nRound {round_number}: Open {cases_to_open} case(s).')
@@ -63,6 +72,14 @@ def play_round(game, round_number, cases_to_open, player_case): #when called in 
 
 
 
+def create_leaderboard():
+    board_file = open('number.txt', 'w')
+    board_file.write(f"")
+
+
+
+
+
 def play_the_game():
     print("Welcome to Deal or No Deal!")
     player_name = input("\nEnter your name to start the game: ")
@@ -75,20 +92,39 @@ def play_the_game():
     else:
         print(f"You have chosen case #{player_case} to keep until the end.")
         player_case_amount = game.cases[player_case]
-        del game.cases[player_case]
+        del game.cases[player_case] #assigning the player a case and deleting it from the dictionary so it doesn't show up anywhere else
         round_number = 0
+        end_indicator = False
     while round_number < 9:
         if round_number < 5:    
             round_structure = [6,5,4,3,2] #number of cases to open each round
             round_number += 1
             play_round(game, round_number, round_structure[round_number-1], player_case)
-        else:
+            print(f"\nThe Banker offers ${banker_offer(game)}.")
+            choice = deal_or_no_deal()
+            if choice == "deal":
+                print(f"\nCongratulations! You won ${banker_offer(game)}.")
+                end_indicator = True
+                break
+            else:
+                continue
+        else:  #the if/else is here because after the 5th round the player only picks one case, but there are up to 9 rounds total
             round_number += 1
             play_round(game, round_number, 1, player_case)
+            print(f"\nThe Banker offers ${banker_offer(game)}.")
+            choice = deal_or_no_deal()
+            if choice == "deal":
+                print(f"\nCongratulations! You won ${banker_offer(game)}.")
+                end_indicator = True
+                break
+            else:
+                continue
+    if end_indicator == False:
+        for key in game.cases:
+            if key not in game.opened_cases:
+                last_case = key
 
-#def create/update_leaderboard(): 
-# idk which is a better name lol
-#This is how we implement a file
-#it will be called every time we play so maybe update instead of create
+        players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {last_case}? "))
+        print(f"Congratulations! You won ${game.cases[players_prize]}")
 
 play_the_game()
