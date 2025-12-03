@@ -86,11 +86,12 @@ def play_the_game():
     
     while round_number < 9:
         if round_number < 5:    
-            show_remaining_case_values(game, player_case)
+            
             play_round(game, round_number, round_structure[round_number-1], player_case)
-        else:
             show_remaining_case_values(game, player_case)
+        else:
             play_round(game, round_number, 1, player_case)
+            show_remaining_case_values(game, player_case)
         
         offer = banker_offer(game)
         print(f'\nThe banker offers you: ${offer:,.2f}')
