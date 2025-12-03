@@ -71,7 +71,7 @@ def play_round(game, round_number, cases_to_open, player_case): #when called in 
 
 
 
-def create_leaderboard(game):
+'''def create_leaderboard(game):
     board_file = open("board.txt", "w")
     board_file.write("REMAINING MONEY VALUES:\n")
     for item in game.cases:
@@ -80,7 +80,7 @@ def create_leaderboard(game):
     values = open('board.txt', 'r')
     board = values.readlines()
     for item in board:
-        print(item)
+        print(item)'''
 
 
 
