@@ -69,24 +69,37 @@ def play_the_game():
     game = Briefcases()
     game.generate_cases()
 
-    player_case = int(input(f"\nWelcome {player_name}! Pick your personal case (1-26): "))
-    if player_case < 1 or player_case > 26:
-        print("Invalid case number. Please choose a number between 1 and 26.")
-    else:
-        print(f"You have chosen case #{player_case} to keep until the end.")
-        player_case_amount = game.cases[player_case]
-        del game.cases[player_case]
-        round_number = 0
+    while True:
+        try:
+            player_case = int(input(f"\nWelcome {player_name}! Pick your personal case (1-26): "))
+            if player_case < 1 or player_case > 26:
+                print("Invalid case number. Please choose a number between 1 and 26.")
+            else:
+                print(f"You have chosen case #{player_case} to keep until the end.")
+                break
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 26.")
+    
+    round_structure = [6,5,4,3,2] #number of cases to open each round    
+    round_number = 0
+    
     while round_number < 9:
         if round_number < 5:    
-            round_structure = [6,5,4,3,2] #number of cases to open each round
             round_number += 1
-            show_remaining_case_values(game, player_case)
+            #show_remaining_case_values(game, player_case)
             play_round(game, round_number, round_structure[round_number-1], player_case)
         else:
             round_number += 1
-            show_remaining_case_values(game, player_case)
+            #show_remaining_case_values(game, player_case)
             play_round(game, round_number, 1, player_case)
+        
+        offer = banker_offer(game)
+        if deal_or_no_deal():
+            print(f'\nCongratulations {player_name}! You accepted the deal of ${offer:,}.')
+            return
+        else:
+            print(f'\nYou declined the deal of ${offer:,}. The game continues!')
+        
 
 #def create/update_leaderboard(): 
 # idk which is a better name lol
