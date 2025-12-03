@@ -92,15 +92,21 @@ def play_the_game():
     game = Briefcases()
     game.generate_cases()
 
-    player_case = int(input(f"\nWelcome {player_name}! Pick your personal case (1-26): "))
-    if player_case < 1 or player_case > 26:
-        print("Invalid case number. Please choose a number between 1 and 26.")
-    else:
-        print(f"You have chosen case #{player_case} to keep until the end.")
-        player_case_amount = game.cases[player_case]
-        del game.cases[player_case] #assigning the player a case and deleting it from the dictionary so it doesn't show up anywhere else
-        round_number = 0
-        end_indicator = False
+    while True: #this forces the player to pick a valid case number
+        try:
+            player_case = int(input(f"\nWelcome {player_name}! Pick your personal case (1-26): "))
+            if player_case < 1 or player_case > 26:
+                print("Invalid case number. Please choose a number between 1 and 26.")
+            else:
+                print(f"You have chosen case #{player_case} to keep until the end.")
+                break
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 26.")
+    #I did the code above to make sure the player picks a valid case number and so that it is still included in the other calculations and remaining case values. I tested it so trust me that it works (:
+
+    round_number = 0
+    end_indicator = False
+    
     while round_number < 9:
         if round_number < 5:    
             round_structure = [6,5,4,3,2] #number of cases to open each round
