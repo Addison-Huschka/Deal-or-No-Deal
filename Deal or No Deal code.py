@@ -82,8 +82,8 @@ def create_leaderboard(player_name,winnings,filename="leaderboard.txt"): #create
     except FileNotFoundError:
         pass
         
-    entries.append((player_name, winnings))
-    entries.sort(key=get_winnings, reverse=True)
+    entries.append((player_name, winnings)) 
+    entries.sort(key=get_winnings, reverse=True) #sort entries by score in descending order
     entries = entries[:5]  # Keep only top 5 scores
 
     with open(filename, "w") as file: #write updated leaderboard entries
@@ -91,7 +91,7 @@ def create_leaderboard(player_name,winnings,filename="leaderboard.txt"): #create
             file.write(f"{name}: ${score:,}\n")
 
 
-def play_the_game():
+def play_the_game(): #main function to play the game
     print("Welcome to Deal or No Deal!")
     player_name = input("\nEnter your name to start the game: ")
     game = Briefcases()
