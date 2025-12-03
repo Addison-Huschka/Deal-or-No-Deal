@@ -125,6 +125,6 @@ def play_the_game():
                 last_case = key
 
         players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {last_case}? "))
-        print(f"Congratulations! You won ${game.cases[players_prize]}")
+        print(f"Congratulations! You won ${game.cases[last_case]}")
 
 play_the_game()
