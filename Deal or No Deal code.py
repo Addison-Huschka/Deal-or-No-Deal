@@ -94,6 +94,7 @@ def play_the_game():
             play_round(game, round_number, 1, player_case)
         
         offer = banker_offer(game)
+        print(f'\nThe banker offers you: ${offer:,.2f}')
         if deal_or_no_deal():
             print(f'\nCongratulations {player_name}! You accepted the deal of ${offer:,}.')
             return
