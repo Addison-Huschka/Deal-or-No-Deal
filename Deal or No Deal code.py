@@ -29,7 +29,7 @@ def banker_offer(game): #this is where we calculate the banker's offer
 
 def deal_or_no_deal():
     choice = input("Do you accept the banker's offer? (deal or no deal): ").lower()
-    return choice
+    return choice == "deal"
 
 def show_remaining_case_values(game, player_case):
     remaining = game.remaining_amounts()
@@ -66,6 +66,7 @@ def play_round(game, round_number, cases_to_open, player_case): #when called in 
 def play_the_game():
     print("Welcome to Deal or No Deal!")
     player_name = input("\nEnter your name to start the game: ")
+    
     game = Briefcases()
     game.generate_cases()
 
@@ -81,26 +82,26 @@ def play_the_game():
             print("Invalid input. Please enter a number between 1 and 26.")
     
     round_structure = [6,5,4,3,2] #number of cases to open each round    
-    round_number = 0
+    round_number = 1
     
     while round_number < 9:
         if round_number < 5:    
-            round_number += 1
-            #show_remaining_case_values(game, player_case)
+            show_remaining_case_values(game, player_case)
             play_round(game, round_number, round_structure[round_number-1], player_case)
         else:
-            round_number += 1
-            #show_remaining_case_values(game, player_case)
+            show_remaining_case_values(game, player_case)
             play_round(game, round_number, 1, player_case)
         
         offer = banker_offer(game)
         print(f'\nThe banker offers you: ${offer:,.2f}')
         if deal_or_no_deal():
-            print(f'\nCongratulations {player_name}! You accepted the deal of ${offer:,}.')
+            print(f'\nCongratulations {player_name}! You accepted the deal of ${offer:,.2f}.')
             return
         else:
-            print(f'\nYou declined the deal of ${offer:,}. The game continues!')
-        
+            print(f'\nYou declined the deal of ${offer:,.2f}. The game continues!')
+        round_number += 1
+
+
 
 #def create/update_leaderboard(): 
 # idk which is a better name lol
