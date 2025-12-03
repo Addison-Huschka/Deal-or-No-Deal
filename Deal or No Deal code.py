@@ -74,13 +74,17 @@ def play_the_game():
         print("Invalid case number. Please choose a number between 1 and 26.")
     else:
         print(f"You have chosen case #{player_case} to keep until the end.")
-        
-
-    round_structure = [6,5,4,3,2] #number of cases to open each round
-    round_number = 1
-
-#pick player case at some point which replaces:
-
+        player_case_amount = game.cases[player_case]
+        del game.cases[player_case]
+        round_number = 0
+    while round_number < 9:
+        if round_number < 5:    
+            round_structure = [6,5,4,3,2] #number of cases to open each round
+            round_number += 1
+            play_round(game, round_number, round_structure[round_number-1], player_case)
+        else:
+            round_number += 1
+            play_round(game, round_number, 1, player_case)
 
 #def create/update_leaderboard(): 
 # idk which is a better name lol
