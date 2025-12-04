@@ -139,7 +139,7 @@ def play_the_game(): #main function to play the game
                 continue
     if end_indicator == False:
         for key in game.cases:
-            if key not in game.opened_cases:
+            if key not in game.opened_cases and key != player_case:
                 last_case = key
 
         players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {last_case}? "))
