@@ -47,7 +47,6 @@ def show_remaining_case_values(game, player_case):
 
 
 
-
 def play_round(game, round_number, cases_to_open, player_case): #when called in the game, it will ask to open cases
     print(f'\nRound {round_number}: Open {cases_to_open} case(s).')
     opened_this_round = []
@@ -109,7 +108,7 @@ def play_the_game(): #main function to play the game
             print("Invalid input. Please enter a number between 1 and 26.")
     #I did the code above to make sure the player picks a valid case number and so that it is still included in the other calculations and remaining case values. I tested it so trust me that it works (:
 
-    round_number = 1
+    round_number = 0
     end_indicator = False
     
     while round_number < 9:
@@ -117,10 +116,10 @@ def play_the_game(): #main function to play the game
             round_structure = [6,5,4,3,2] #number of cases to open each round
             round_number += 1
             play_round(game, round_number, round_structure[round_number-1], player_case)
-            print(f"\nThe Banker offers ${banker_offer(game)}.")
-            choice = deal_or_no_deal()
-            if choice == "deal":
-                print(f"\nCongratulations! You won ${banker_offer(game)}.")
+            print(f"\nThe Banker offers ${banker_offer(game):,.2f}.")
+            if deal_or_no_deal():
+                print(f"\nCongratulations! You won ${banker_offer(game):,.2f}.")
+                winnings = banker_offer(game)
                 end_indicator = True
                 break
             else:
@@ -128,10 +127,10 @@ def play_the_game(): #main function to play the game
         else:  #the if/else is here because after the 5th round the player only picks one case, but there are up to 9 rounds total
             round_number += 1
             play_round(game, round_number, 1, player_case)
-            print(f"\nThe Banker offers ${banker_offer(game)}.")
-            choice = deal_or_no_deal()
-            if choice == "deal":
-                print(f"\nCongratulations! You won ${banker_offer(game)}.")
+            print(f"\nThe Banker offers ${banker_offer(game):,.2f}.")
+            if deal_or_no_deal():
+                print(f"\nCongratulations! You won ${banker_offer(game):,.2f}.")
+                winnings = banker_offer(game)
                 end_indicator = True
                 break
             else:
@@ -139,11 +138,11 @@ def play_the_game(): #main function to play the game
     if end_indicator == False:
         for key in game.cases:
             if key not in game.opened_cases:
-                last_case = key
+                winnings = key
 
-        players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {last_case}? "))
-        print(f"Congratulations! You won ${game.cases[last_case]}")
+        players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {winnings}? "))
+        print(f"Congratulations! You won ${game.cases[winnings]:,.2f}.")
 
-    create_leaderboard(player_name, winnings=game.cases[last_case])
+    create_leaderboard(player_name, winnings=game.cases[winnings])
 
 play_the_game()
