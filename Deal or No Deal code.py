@@ -128,6 +128,7 @@ def play_the_game(): #main function to play the game
         else:  #the if/else is here because after the 5th round the player only picks one case, but there are up to 9 rounds total
             round_number += 1
             play_round(game, round_number, 1, player_case)
+            show_remaining_case_values(game, player_case)
             print(f"\nThe Banker offers ${banker_offer(game):,.2f}.")
             if deal_or_no_deal():
                 print(f"\nCongratulations! You won ${banker_offer(game):,.2f}.")
@@ -139,11 +140,12 @@ def play_the_game(): #main function to play the game
     if end_indicator == False:
         for key in game.cases:
             if key not in game.opened_cases:
-                winnings = key
+                last_case = key
 
-        players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {winnings}? "))
-        print(f"Congratulations! You won ${game.cases[winnings]:,.2f}.")
+        players_prize = int(input(f"\nThere are two remaining cases. Do you choose your case {player_case}, or the remaining case {last_case}? "))
+        print(f"Congratulations! You won ${game.cases[players_prize]:,.2f}.")
+        winnings = game.cases[players_prize]
 
-    create_leaderboard(player_name, winnings=game.cases[winnings])
+    create_leaderboard(player_name, winnings)
 
 play_the_game()
