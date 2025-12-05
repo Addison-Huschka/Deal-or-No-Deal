@@ -28,8 +28,6 @@ class Briefcases:
 def banker_offer(game): #this is where we calculate the banker's offer
     offer = sum(game.remaining_amounts())/len(game.remaining_amounts())
     return offer
-#I think we can just use the average for the bankers formula
-#but if someone finds a different way that works too
 
 
 def deal_or_no_deal(): #this asks the player if they want to accept the banker's offer
@@ -37,7 +35,7 @@ def deal_or_no_deal(): #this asks the player if they want to accept the banker's
     return choice == "deal"
 
 
-def show_remaining_case_values(game, player_case): #this shows the remaining case values to the player after each round
+def show_remaining_case_values(game): #this shows the remaining case values to the player after each round
     remaining = game.remaining_amounts()
     remaining_sorted = sorted(remaining)
     
