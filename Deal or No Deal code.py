@@ -113,7 +113,7 @@ def play_the_game(): #main function to play the game
             round_structure = [6,5,4,3,2] #number of cases to open each round
             round_number += 1
             play_round(game, round_number, round_structure[round_number-1], player_case)
-            show_remaining_case_values(game, player_case)
+            show_remaining_case_values(game)
             print(f"\nThe Banker offers ${banker_offer(game):,.2f}.")
             if deal_or_no_deal():
                 print(f"\nCongratulations! You won ${banker_offer(game):,.2f}.")
