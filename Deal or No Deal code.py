@@ -86,7 +86,7 @@ def create_leaderboard(player_name,winnings,filename="leaderboard.txt"): #create
 
     with open(filename, "w") as file: #write updated leaderboard entries
         for name, score in entries:
-            file.write(f"{name}: ${score:,}\n")
+            file.write(f"{name}: ${score:,.2f}\n")
 
 
 def play_the_game(): #main function to play the game
